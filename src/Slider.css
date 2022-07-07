@@ -1,0 +1,27 @@
+.d {
+  width: 100%;
+  height: 200%;
+  z-index: 1000;
+  
+ 
+  /* Small Devices, Tablets */
+  @media only screen and (min-width: 50%) {
+    background-color: green;
+  }
+
+  /* Medium Devices, Desktops */
+  @media only screen and (min-width: 20%) {
+    width: 20%;
+    background-color: pink;
+  }
+}
+.d .carousel  .carousel-inner .carousel-item {
+  width: 100%;
+  
+}
+.d .carousel  .carousel-inner .carousel-item img{
+  width: 100%;
+  height:400px;
+  
+  margin: 0 auto;
+}
