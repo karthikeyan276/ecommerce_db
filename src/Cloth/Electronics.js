@@ -1,28 +1,17 @@
 import React, { Component } from 'react'
-import axios from 'axios'
+import { withRouter } from '../Withrouter';
 import { experimentalStyled as styled } from '@mui/material/styles';
 import Box from '@mui/material/Box';
 import Paper from '@mui/material/Paper';
 import Grid from '@mui/material/Grid';
 import { Button } from 'reactstrap';
-import Mens_cloth from './Cloth/Mens_cloth';
+import Navbar_new from '../Navbar_new';
 
-export default class Poducts extends Component {
-    constructor(){
-        super()
-        this.state={
-            product_data:[],
-            All_data:[]
-        }
+
+ class Electronics extends Component {
+    constructor(props){
+        super(props)
     }
-    componentDidMount=()=>{
-        axios.get("https://fakestoreapi.com/products").then((response)=>{
-            console.log(response.status);
-            console.log(response.data)
-            this.setState({product_data:response.data})
-        
-          })
-      }
   render() {
     const Item = styled(Paper)(({ theme }) => ({
         backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
@@ -31,16 +20,20 @@ export default class Poducts extends Component {
         textAlign: 'center',
         color: theme.palette.text.secondary,
       }));
-    const data = this.state.product_data
-    const t_shirt = data.filter(d=>d.category=="men's clothing")
-    console.log("men's clothing",t_shirt)
+    console.log(this.props.router.location.state)
+    const data = this.props.router.location.state
+    console.log("data",data)
     return (
-      <div style={{backgroundColor:"lightblue"}}>
+      <div>
+        <div style={{marginTop:"1px"}}>
+          <Navbar_new/>
+        </div>
 
-<Box sx={{ flexGrow: 1,mt:2,ml:1,mr:1 }}>
+<div>
+          <Box sx={{ flexGrow: 1,mt:2,ml:1,mr:1 }}>
       <Grid container spacing={{ xs: 2, md: 3 }} columns={{ xs: 4, sm: 8, md: 12 }}>
         {data.map((d, index) => (
-          <Grid key={index} item xs={2} sm={4} md={4} >
+          <Grid key={index} item xs={6} sm={6} md={6} >
             <Item >id:{d.id}</Item>
             <Item > category:{d.category}</Item>
             <Item >   Desc:{d.description.slice(0,20)}</Item>
@@ -52,8 +45,9 @@ export default class Poducts extends Component {
         ))}
       </Grid>
     </Box>
-   
+          </div>
       </div>
     )
   }
 }
+export default withRouter(Electronics)

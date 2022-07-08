@@ -53,6 +53,31 @@ app.post(`/user`,(req,res)=>{
  
 })
 
+app.post(`/product`,(req,res)=>{
+
+    const id=req.body.id
+
+   
+    const category = req.body.category
+    const description=req.body.description
+    // const image = req.body.image
+    // const price = res.body.price
+    // console.log("price",price)
+    const title = req.body.title
+    const user_id= req.body.user_id
+    db.query(`INSERT INTO product_details (id,category,description,title,user_id)VALUES(?,?,?,?,?)`,[id,category,description,title,user_id],(err,result)=>{
+        if(err){
+            console.log("hhh",err)
+        }else{
+            res.send({message:"sucess",results:result})
+        }
+    })
+    db.connect((err)=>{
+        err? console.log(err): console.log("connected")
+    })
+ 
+})
+
 
 
 
