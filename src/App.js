@@ -12,7 +12,7 @@ import Mens_cloth from './Cloth/Mens_cloth';
 import Womens_cloth from './Cloth/Womens_cloth';
 import Electronics from './Cloth/Electronics';
 import Jwel from './Cloth/Jwel';
-import Navbar from "./Navbar"
+import Navbar from "./Navbar/Navbar"
 import Navbar_new from './Navbar_new';
 import Orders from './Orders';
 import Nav from './Nav';
@@ -21,6 +21,9 @@ import Admin from './Admin';
 import Mens_details from './Mens_details';
 import Bynow from './Bynow';
 import Checkout from './Checkout/Checkout';
+import AddressForm from './Checkout/AddressForm';
+import Women_details from './Cloth/Women_details';
+import Homepage from './Home/Homepage';
 
 
 
@@ -33,9 +36,12 @@ function App() {
                 <ToastContainer closeButton={false}  position="top-right" />
               
           
+           {/* <AddressForm/> */}
+           <Navbar/>
+           {/* <Homepage/> */}
            
 
-                <Routes>
+                {/* <Routes>
                 <Route path = "/" element={<Register/>}/>
                 <Route path='/Login' element={<Login/>}/>
                 <Route path='/Home' element={<Home/>}/>
@@ -48,8 +54,9 @@ function App() {
                 <Route path='/Mens_details' element={<Mens_details/>}/>
                 <Route path="/Bynow" element={<Bynow/>}/>
                 <Route path="/Checkout" element={<Checkout/>}/>
+                <Route path='/Womens_details' element={<Women_details/>}/>
 
-                </Routes>
+                </Routes> */}
    
     </div>
   );

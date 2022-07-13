@@ -17,13 +17,11 @@ import PaymentForm from './PaymentForm';
 import Review from './Review';
 import Navbar_new from '../Navbar_new';
 
-function Copyright() {
-  
-}
+
 
 const steps = ['Shipping address', 'Payment details', 'Review your order'];
 
-function getStepContent(step) {
+const getStepContent=(step)=> {
   switch (step) {
     case 0:
       return <AddressForm />;
@@ -33,12 +31,13 @@ function getStepContent(step) {
       return <Review />;
     default:
       throw new Error('Unknown step');
+      break
   }
 }
 
 const theme = createTheme();
 
-export default function Checkout() {
+ const Checkout=()=> {
   const [activeStep, setActiveStep] = React.useState(0);
 
   const handleNext = () => {
@@ -51,6 +50,7 @@ export default function Checkout() {
 
   return (
     <ThemeProvider theme={theme}>
+      
       <CssBaseline />
       <AppBar
         position="absolute"
@@ -94,7 +94,7 @@ export default function Checkout() {
                 {getStepContent(activeStep)}
                 <Box sx={{ display: 'flex', justifyContent: 'flex-end' }}>
                   {activeStep !== 0 && (
-                    <Button onClick={handleBack} sx={{ mt: 3, ml: 1 }}>
+                    <Button onClick={()=>handleBack()} sx={{ mt: 3, ml: 1 }}>
                       Back
                     </Button>
                   )}
@@ -111,8 +111,9 @@ export default function Checkout() {
             )}
           </React.Fragment>
         </Paper>
-        <Copyright />
+    
       </Container>
     </ThemeProvider>
   );
 }
+export default Checkout

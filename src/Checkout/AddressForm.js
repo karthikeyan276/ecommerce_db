@@ -4,9 +4,17 @@ import Typography from '@mui/material/Typography';
 import TextField from '@mui/material/TextField';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import Checkbox from '@mui/material/Checkbox';
+import Checkout from './Checkout';
 
 export default class AddressForm extends Component {
+  constructor(){
+    super()
+    this.state={
+      name:""
+    }
+  }
   render() {
+    console.log(this.state.name)
     return (
         <React.Fragment>
         <Typography variant="h6" gutterBottom>
@@ -22,6 +30,7 @@ export default class AddressForm extends Component {
               fullWidth
               autoComplete="given-name"
               variant="standard"
+              onChange={(e)=>this.setState({name:e.target.value})}
             />
           </Grid>
           <Grid item xs={12} sm={6}>
@@ -105,6 +114,7 @@ export default class AddressForm extends Component {
             />
           </Grid>
         </Grid>
+        {/* <Checkout name={this.state.name}/> */}
       </React.Fragment>
     )
   }

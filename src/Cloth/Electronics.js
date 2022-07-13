@@ -30,16 +30,16 @@ import axios from "axios"
     const pricee = Math.round(price)
     console.log("prieeee",pricee)
     this.setState({id:id,category:dd,description:description,price:pricee,image:image,title:title})
-    axios.post(`http://localhost:7001/product`,{
+    // axios.post(`http://localhost:7001/product`,{
       
-      category:this.state.category,
-      description:this.state.description,
-      price:this.state.price,
-      title:this.state.title,
-      user_id:this.state.user_id,
-      image:this.state.image
+    //   category:this.state.category,
+    //   description:this.state.description,
+    //   price:this.state.price,
+    //   title:this.state.title,
+    //   user_id:this.state.user_id,
+    //   image:this.state.image
 
-    })
+    // })
 
 
     }
@@ -77,7 +77,7 @@ import axios from "axios"
             <Item >   Desc:{d.description.slice(0,20)}</Item>
             <Item > <h4> Price:{d.price} </h4></Item>
             <Item >  {<img style={{height:"150px"}} src={d.image}/>}</Item>
-            <Item><Button variant="contained" color='success' onClick={()=>this.submit(d.id,d.category,d.description,d.price,d.image,d.title)}>Add</Button></Item>
+            <Item><Button variant="contained" color='success' onClick={()=>this.Addtocart(d.id,d.category,d.description,d.price,d.image,d.title)}>Add</Button></Item>
         
           </Grid>
         ))}

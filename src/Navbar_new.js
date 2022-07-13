@@ -58,7 +58,7 @@ handleClick = (event) => {
    
         const data = response.data
         const t_shirt = data.filter(d=>d.category=="men's clothing")
-        console.log("men's clothing",t_shirt)
+        // console.log("men's clothing",t_shirt)
         this.setState({product_data:t_shirt})
 
         const jwel = data.filter(d=>d.category=="jewelery")
@@ -73,7 +73,7 @@ handleClick = (event) => {
         this.setState({electroincs:electroincs})
         // console.log("electronics",electroincs)
         let datas = JSON.parse(localStorage.getItem("user_email")) || []
-        console.log("datas",datas[0])
+        // console.log("datas",datas[0])
         this.setState({user_id:datas[0]})
     
       })
@@ -102,13 +102,13 @@ handleClick = (event) => {
   render() {
     const open = Boolean(this.state.anchorEl);
     const open_1 = Boolean(this.state.anchorEl_1)
-    console.log(this.state.product_data)
+    // console.log(this.state.product_data)
     const datas = this.state.product_data
     // if(localStorage.getItem("ecommerce")==null){
     //     return <Navigate to="/Home"/>
     // }
 
-    console.log("data",datas)
+    // console.log("data",datas)
     return (
       <div>
         <div style={{float:"right",width:"100%",backgroundColor:"#2874f0",color:"white"}}> 

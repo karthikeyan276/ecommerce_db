@@ -4,9 +4,10 @@ import { experimentalStyled as styled } from '@mui/material/styles';
 import Box from '@mui/material/Box';
 import Paper from '@mui/material/Paper';
 import Grid from '@mui/material/Grid';
-import { Button } from 'reactstrap';
+import { Button } from '@mui/material'
 import axios from "axios"
 import Navbar_new from '../Navbar_new';
+import { Link } from 'react-router-dom';
 
 
 class Womens_cloth extends Component {
@@ -38,17 +39,18 @@ class Womens_cloth extends Component {
         console.log("ddd",dd)
         const pricee = Math.round(price)
         console.log("prieeee",pricee)
+        localStorage.setItem("female",id)
         this.setState({id:id,category:dd,description:description,price:pricee,image:image,title:title})
-        axios.post(`http://localhost:7001/Product_women`,{
+        // axios.post(`http://localhost:7001/Product_women`,{
           
-          category:this.state.category,
-          description:this.state.description,
-          price:this.state.price,
-          title:this.state.title,
-          user_id:this.state.user_id,
-          image:this.state.image
+        //   category:this.state.category,
+        //   description:this.state.description,
+        //   price:this.state.price,
+        //   title:this.state.title,
+        //   user_id:this.state.user_id,
+        //   image:this.state.image
     
-        })
+        // })
         
       }
   render() {
@@ -80,9 +82,15 @@ class Womens_cloth extends Component {
             <Item >   Desc:{d.description.slice(0,20)}</Item>
             <Item > <h4> Price:{d.price} </h4></Item>
             <Item >  {<img style={{height:"150px"}} src={d.image}/>}</Item>
-            <Item><Button variant="contained" color='success' onClick={()=>this.Add_product(d.id,d.category,d.description,d.price,d.image,d.title)}>Add</Button></Item>
-           <Item> <Button variant="contained" color="error">Remove</Button>
-            </Item>
+            {/* <Item><Button variant="contained" color='success' onClick={()=>this.Add_product(d.id,d.category,d.description,d.price,d.image,d.title)}>Add</Button></Item> */}
+           
+           <Link to="/Womens_details" state={this.props.router.location.state} >
+                <Item ><Button variant='contained' color="secondary" onClick={()=>this.Add_product(d.id,d.category,d.description,d.price,d.image,d.title)}>  View Details </Button></Item>
+           </Link>
+      
+           
+           {/* <Item> <Button variant="contained" color="error">Remove</Button>
+            </Item> */}
         
           </Grid>
         ))}
