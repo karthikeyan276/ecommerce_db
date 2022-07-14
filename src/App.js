@@ -15,7 +15,7 @@ import Jwel from './Cloth/Jwel';
 import Navbar from "./Navbar/Navbar"
 import Navbar_new from './Navbar_new';
 import Orders from './Orders';
-import Nav from './Nav';
+import Nav from './Navbar/Nav';
 import Nav_1 from './Newnav';
 import Admin from './Admin';
 import Mens_details from './Mens_details';
@@ -24,6 +24,8 @@ import Checkout from './Checkout/Checkout';
 import AddressForm from './Checkout/AddressForm';
 import Women_details from './Cloth/Women_details';
 import Homepage from './Home/Homepage';
+import { Newhome } from './Home/Newhome';
+import Profile from './Profile/Profile';
 
 
 
@@ -37,11 +39,11 @@ function App() {
               
           
            {/* <AddressForm/> */}
-           <Navbar/>
-           {/* <Homepage/> */}
+           {/* <Nav/> */}
+           {/* <Newhome/> */}
            
 
-                {/* <Routes>
+                <Routes>
                 <Route path = "/" element={<Register/>}/>
                 <Route path='/Login' element={<Login/>}/>
                 <Route path='/Home' element={<Home/>}/>
@@ -55,8 +57,9 @@ function App() {
                 <Route path="/Bynow" element={<Bynow/>}/>
                 <Route path="/Checkout" element={<Checkout/>}/>
                 <Route path='/Womens_details' element={<Women_details/>}/>
+                <Route path='/Profile' element={<Profile/>}/>
 
-                </Routes> */}
+                </Routes>
    
     </div>
   );

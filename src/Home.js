@@ -16,6 +16,7 @@ import Slider from './Slider'
 import Mens_cloth from './Cloth/Mens_cloth';
 import { withRouter } from './Withrouter';
 import Navbar_new from './Navbar_new';
+import Loading from './Loading';
 
  class Home extends Component {
     constructor(){
@@ -27,7 +28,8 @@ import Navbar_new from './Navbar_new';
           jwel:[],
           electroincs:[],
           womens_clothing:[],
-          anchorEl_1:false
+          anchorEl_1:false,
+          loading:false
         }
     }
 
@@ -59,10 +61,11 @@ import Navbar_new from './Navbar_new';
       }
 
       componentDidMount=()=>{
+        this.setState({loading:false})
         axios.get("https://fakestoreapi.com/products").then((response)=>{
             console.log(response.status);
             console.log(response.data)
-       
+            this.setState({loading:true})
             const data = response.data
             const t_shirt = data.filter(d=>d.category=="men's clothing")
             console.log("men's clothing",t_shirt)
@@ -89,11 +92,13 @@ import Navbar_new from './Navbar_new';
     const datas = this.state.product_data
 
     console.log("data",datas)
- 
+ const loading=this.state.loading
+ console.log("loading",loading)
 
     return (
        <div>
          <Navbar_new/>
+         
         {/* <div style={{backgroundColor:"#2874f0",color:"white"}}>
        <Box
       sx={{
@@ -208,6 +213,12 @@ import Navbar_new from './Navbar_new';
     <div style={{marginTop:"70px"}}>
 
          <Slider/>
+
+        {   this.state.loading ?"" :<Loading/>   }
+
+         {/* {loading && <p>Loading...</p>} */}
+         {/* {loading?<p>loading</p>:""} */}
+         
     </div>
      
      

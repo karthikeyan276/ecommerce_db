@@ -2,6 +2,7 @@ const express = require('express');
 const app = express();
 const mysql = require("mysql");
 const cors = require('cors')
+const Sequelize = require("sequelize");
 
 
 app.use(cors());
@@ -192,7 +193,31 @@ app.post(`/Orders`,(req,res)=>{
  
 })
 
+app.post(`/userdata`,(req,res)=>{
+    const user_email=req.body.user_email
+    console.log("user_email",user_email)
+    db.query(`select * from user_regirster where id = 1`,(err,result)=>{
+        if(err){
+            console.log(err)
+        }else{
+            res.send({message:'sucess',results:result})
+        }
+        
+    })
+})
 
+app.put(`/image/:user_email`,(req,res)=>{
+    const user_email = req.params.user_email
+    console.log("user_emailuser_email",user_email)
+    db.query(`update user_regirster set image ="C:\fakepath\image1.jpg" where id = ${user_email}`),(err,result)=>{
+        if(err){
+            console.log(err)
+        }else{
+            res.send({message:'sucess',results:result})
+        }
+    }
+
+})
 
 app.listen(7001,()=>{
     console.log("server running port 7001")

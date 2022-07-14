@@ -147,7 +147,10 @@ handleClick = (event) => {
         }}
         sx={{color:"white"}}
       >
-        <MenuItem onClick={this.handleClose}>Profile</MenuItem>
+        <Link to='/Profile'style={{ color: 'inherit', textDecoration: 'inherit'}} >
+        <MenuItem >Profile</MenuItem>
+        </Link>
+        
         <MenuItem onClick={this.handleClose}>My account</MenuItem>
         <MenuItem onClick={this.handleClose}>Login </MenuItem>
       </Menu>
@@ -192,7 +195,7 @@ handleClick = (event) => {
  
     </NavItem>
           <NavItem>
-          <Link to="/Login">
+          <Link to="/Login" style={{ color: 'inherit', textDecoration: 'inherit'}}>
           <NavLink style={{color:"white"}} onClick={this.logout_1}>Logout</NavLink>
           </Link>
             
