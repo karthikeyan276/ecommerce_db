@@ -126,7 +126,7 @@ handleClick = (event) => {
         aria-expanded={open ? "true" : undefined}
         onMouseOver={this.handleClick}
         variant="contained"
-       
+     
      
       >
         Dashboard
@@ -136,7 +136,7 @@ handleClick = (event) => {
         aria-labelledby="demo-positioned-button"
         anchorEl={this.state.anchorEl}
         open={open}
-        onMouseMove={this.handleClose}
+        onClick={this.handleClose}
         anchorOrigin={{
           vertical: "top",
           horizontal: "left"
@@ -150,8 +150,10 @@ handleClick = (event) => {
         <Link to='/Profile'style={{ color: 'inherit', textDecoration: 'inherit'}} >
         <MenuItem >Profile</MenuItem>
         </Link>
+        <Link to ="/Account" style={{ color: 'inherit', textDecoration: 'inherit'}}>
+        <MenuItem>My account</MenuItem>
+        </Link>
         
-        <MenuItem onClick={this.handleClose}>My account</MenuItem>
         <MenuItem onClick={this.handleClose}>Login </MenuItem>
       </Menu>
           </NavItem>
@@ -167,16 +169,16 @@ handleClick = (event) => {
                 {/* <Link to="/Mens_cloth" state={this.state.product_data} >
         <MenuItem >men's clothing</MenuItem>
         </Link> */}
-                <Link to="/Mens_cloth" state={this.state.product_data}>
+                <Link to="/Mens_cloth" style={{ color: 'inherit', textDecoration: 'inherit'}} state={this.state.product_data}>
               <DropdownItem>Mens_cloth</DropdownItem>
               </Link>
-                <Link to="/womes_cloth" state={this.state.womens_clothing}>
+                <Link to="/womes_cloth" style={{ color: 'inherit', textDecoration: 'inherit'}} state={this.state.womens_clothing}>
               <DropdownItem>Womens_cloth</DropdownItem>
               </Link>
-              <Link to="/jewelery" state={this.state.jwel}>
+              <Link to="/jewelery" style={{ color: 'inherit', textDecoration: 'inherit'}} state={this.state.jwel}>
               <DropdownItem>jewelery</DropdownItem>
               </Link>
-              <Link to="/electroics"  state={this.state.electroincs}>
+              <Link to="/electroics" style={{ color: 'inherit', textDecoration: 'inherit'}}  state={this.state.electroincs}>
               <DropdownItem>Electronics</DropdownItem>
               </Link>
             </DropdownMenu>

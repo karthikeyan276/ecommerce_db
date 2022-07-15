@@ -26,6 +26,9 @@ import Women_details from './Cloth/Women_details';
 import Homepage from './Home/Homepage';
 import { Newhome } from './Home/Newhome';
 import Profile from './Profile/Profile';
+import LinaerStepper from './Checkout/LinearStepper';
+import Welcome from './Checkout/Welcome';
+import Account from './Account';
 
 
 
@@ -37,7 +40,7 @@ function App() {
   
                 <ToastContainer closeButton={false}  position="top-right" />
               
-          
+          {/* <LinaerStepper/> */}
            {/* <AddressForm/> */}
            {/* <Nav/> */}
            {/* <Newhome/> */}
@@ -55,10 +58,11 @@ function App() {
                 <Route path='/Orders' element={<Orders/>}/>
                 <Route path='/Mens_details' element={<Mens_details/>}/>
                 <Route path="/Bynow" element={<Bynow/>}/>
-                <Route path="/Checkout" element={<Checkout/>}/>
+                <Route path="/Checkout" element={<LinaerStepper/>}/>
                 <Route path='/Womens_details' element={<Women_details/>}/>
                 <Route path='/Profile' element={<Profile/>}/>
-
+                <Route path='/Placeorder' element={<Welcome/>}/>
+                <Route path="/Account" element={<Account/>}/>
                 </Routes>
    
     </div>

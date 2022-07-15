@@ -219,6 +219,70 @@ app.put(`/image/:user_email`,(req,res)=>{
 
 })
 
+
+app.post(`/details`,(req,res)=>{
+    const firstName=req.body.firstName
+    const lastname=req.body.lastname
+    const email=req.body.email
+    const phoneNumber=req.body.phoneNumber
+    const address1=req.body.address1
+    const address2=req.body.address2
+    const title=req.body.title
+    const description=req.body.description
+    const image=req.body.image
+    const data1=req.body.data1
+    const category=req.body.category
+        const price=req.body.price
+    const country=req.body.country
+    const user_data=req.body
+
+
+
+
+    // console.log("user_email",firstName)
+    db.query(`INSERT INTO user_bynow (firstName,lastName,emailAddress,phoneNumber,address_1,address_2,country,user_id,image,category,description,price,title)VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?)`,[firstName,lastname,email,phoneNumber,address1,address2,country,data1,image,category,description,price,title],(err,result)=>{
+        if(err){
+            console.log("hhhh",err)
+        
+            res.status(500).send({message:"error",errors:err})
+
+        }else{
+            res.send({message:"sucess",results:result,errors:err})
+        }
+        db.connect((err)=>{
+            err? console.log(err): console.log("connected")
+        })
+     
+    })
+//  const user = user_data&&user_data.map(d=>d.First_name)
+
+//  console.log("user",user)
+
+// const values = user_data&&user_data.length>0&&user_data.map(d=>d.First_name)
+
+// console.log("valuess",values)
+
+// db.query(
+//     'INSERT INTO user_bynow (first_name, lastName, emailAddress,phoneNumber,address1,address2,cardMonth,cardNumber) VALUES ?',
+//     [user_data.map(item => [item.First_name, item.lastName, item.emailAddress,item.phoneNumber,item.address1,item.address2,item.cardMonth,item.cardNumber])],(err,result)=>{
+//            if(err){
+//             console.log(err)
+//         }else{
+//             res.send({message:'sucess',results:result})
+//         }
+//     }
+   
+// );
+    // db.query(`select * from  user_regirster`,(err,result)=>{
+    //     if(err){
+    //         console.log(err)
+    //     }else{
+    //         res.send({message:'sucess',results:result})
+    //     }
+        
+    // })
+})
+
 app.listen(7001,()=>{
     console.log("server running port 7001")
 })

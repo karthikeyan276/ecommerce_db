@@ -38,6 +38,7 @@ componentDidMount=()=>{
     console.log("ddd",dd)
     const pricee = Math.round(price)
     console.log("prieeee",pricee)
+    
     localStorage.setItem("id",id)
     this.setState({id:id,category:dd,description:description,price:pricee,image:image,title:title})
     axios.post(`http://localhost:7001/Product_men`,{
@@ -83,7 +84,7 @@ componentDidMount=()=>{
             <Item > <h4> Price:{Math.round(d.price)} </h4></Item>
             <Item >  {<img style={{height:"150px"}} src={d.image}/>}</Item>
             <Item>
-              <Link to="/Mens_details" state ={this.props.router.location.state}>
+              <Link to="/Mens_details" style={{ color: 'inherit', textDecoration: 'inherit'}} state ={data}>
               {/* {console.log("dd",d)} */}
             
               <Button variant='contained' color='secondary' onClick={()=>this.Add_product(d.id,d.category,d.description,d.price,d.image,d.title)}> View Details  

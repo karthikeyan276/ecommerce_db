@@ -38,8 +38,8 @@ import { Link } from 'react-router-dom';
             <Box sx={{position:"relative",mt:10}}><h3> {val.description} </h3> 
             
             <h3 style={{color:"green"}}> Price:<CurrencyRupeeRoundedIcon/>   {val.price} </h3>
-            <Link to="/Checkout">
-            <Button sx={{float:"left",mt:1}} variant='contained' color="success">Checkout</Button>
+            <Link to="/Checkout" state={datas}>
+            <Button sx={{float:"left",mt:1}} variant='contained' color="success"  >Checkout</Button>
             </Link>
             
              </Box>  
