@@ -6,6 +6,7 @@ import {
   KeyboardDatePicker
 } from "@material-ui/pickers";
 import Table from '@mui/material/Table';
+import Stack from '@mui/material/Stack';
 import TableBody from '@mui/material/TableBody';
 import TableCell from '@mui/material/TableCell';
 import TableContainer from '@mui/material/TableContainer';
@@ -40,7 +41,13 @@ import Navbar_new from "../Navbar_new";
 const useStyles = makeStyles((theme) => ({
   button: {
     marginRight: theme.spacing(1),
+
   },
+//   textfield_input: {
+//     color: `red !important`,
+
+ 
+// }
 }));
  
 function getSteps() {
@@ -54,10 +61,13 @@ function getSteps() {
 }
 const BasicForm = () => {
   const { control } = useFormContext();
+  const classes = useStyles();
   return (
     <>
-    
-      <Controller
+    <Box sx={{textAlign:"center"}}>
+
+    <Controller
+   
         control={control}
         name="firstName"
         render={({ field }) => (
@@ -66,12 +76,15 @@ const BasicForm = () => {
             label="First Name"
             variant="outlined"
             placeholder="Enter Your First Name"
-            fullWidth
+            inputProps={{className: classes.textfield_input}}
+        
             margin="normal"
+            
             {...field}
           />
         )}
-      />
+        
+      /><br/>
 
       <Controller
         control={control}
@@ -82,12 +95,14 @@ const BasicForm = () => {
             label="Last Name"
             variant="outlined"
             placeholder="Enter Your Last Name"
-            fullWidth
+            
             margin="normal"
             {...field}
           />
         )}
       />
+    </Box>
+      
 
       {/* <Controller
         control={control}
@@ -112,6 +127,8 @@ const ContactForm = () => {
   const { control } = useFormContext();
   return (
     <>
+    <Box sx={{textAlign:"center"}}>
+
       <Controller
         control={control}
         name="emailAddress"
@@ -121,12 +138,12 @@ const ContactForm = () => {
             label="E-mail"
             variant="outlined"
             placeholder="Enter Your E-mail Address"
-            fullWidth
+         
             margin="normal"
             {...field}
           />
         )}
-      />
+      /><br/>
 
       <Controller
         control={control}
@@ -137,12 +154,14 @@ const ContactForm = () => {
             label="Phone Number"
             variant="outlined"
             placeholder="Enter Your Phone Number"
-            fullWidth
+    
             margin="normal"
             {...field}
           />
         )}
       />
+    </Box>
+      
       {/* <Controller
         control={control}
         name="alternatePhone"
@@ -165,7 +184,19 @@ const PersonalForm = () => {
   const { control } = useFormContext();
   return (
     <>
-      <Controller
+
+<Stack
+      component="form"
+      sx={{
+        width: '25ch',
+        margin:"0 auto"
+      }}
+      spacing={2}
+      noValidate
+      autoComplete="off"
+    >
+
+    <Controller
         control={control}
         name="address1"
         render={({ field }) => (
@@ -174,7 +205,7 @@ const PersonalForm = () => {
             label="Address 1"
             variant="outlined"
             placeholder="Enter Your Address 1"
-            fullWidth
+           
             margin="normal"
             {...field}
           />
@@ -189,7 +220,7 @@ const PersonalForm = () => {
             label="Address 2"
             variant="outlined"
             placeholder="Enter Your Address 2"
-            fullWidth
+      
             margin="normal"
             {...field}
           />
@@ -204,12 +235,15 @@ const PersonalForm = () => {
             label="Country"
             variant="outlined"
             placeholder="Enter Your Country Name"
-            fullWidth
+            
             margin="normal"
             {...field}
           />
         )}
       />
+
+    </Stack>
+      
     </>
   );
 };
@@ -218,6 +252,16 @@ const PaymentForm = () => {
 
   return (
     <>
+    <Stack
+      component="form"
+      sx={{
+        width: '25ch',
+        margin:"0 auto"
+      }}
+      spacing={2}
+      noValidate
+      autoComplete="off"
+    >
       <Controller
         control={control}
         name="cardNumber"
@@ -264,9 +308,11 @@ const PaymentForm = () => {
             type="number"
             {...field}
           />
+          
         )}
+        
       />
-      
+      </Stack>
        
     </>
   );
@@ -481,7 +527,7 @@ console.log("dddd",data)
             <TableCell align="center">title</TableCell>
             <TableCell align="center">description</TableCell>
             <TableCell align="center">image</TableCell>
-            <TableCell align="center">Rating</TableCell>
+            {/* <TableCell align="center">Rating</TableCell> */}
 
             <TableCell align="center">price</TableCell>
           </TableRow>
@@ -578,8 +624,9 @@ console.log("dddd",data)
           <FormProvider {...methods}>
             <form onSubmit={methods.handleSubmit(handleNext)}>
               {getStepContent(activeStep)}
+          <Box sx={{textAlign:"center"}}>
 
-              <Button
+            <Button
                 className={classes.button}
                 disabled={activeStep === 0}
                 onClick={handleBack}
@@ -606,6 +653,8 @@ console.log("dddd",data)
               >
                 {activeStep === steps.length - 1 ? "Finish" : "Next"}
               </Button>
+          </Box>
+              
             </form>
           </FormProvider>
         </>

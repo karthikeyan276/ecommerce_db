@@ -84,7 +84,7 @@ import { Link } from 'react-router-dom';
         <div>
      
         <div>
-          {/* <Navbar_new/> */}
+          <Navbar_new/>
         </div>
 
 <div>
@@ -97,7 +97,7 @@ import { Link } from 'react-router-dom';
             <Item>
             <Typography  variant="h3" sx={{ml:3,color:"black"}}>  {d.title} </Typography>
              <img style={{width:"450px",float:"left"}} src={d.image}/> {d.rating.count[0]}</Item>
-                <Item sx={{display:'table-cell'}}><h2>  {d.description}  </h2> <h1><CurrencyRupeeRoundedIcon/> {Math.round(d.price)}</h1>  </Item>
+                <Item sx={{display:'table-cell'}}><h2>  {d.description}  </h2> <h1 style={{color:"red"}}> <CurrencyRupeeRoundedIcon/> {Math.round(d.price)}</h1>  </Item>
                 <Button variant='contained' sx={{float:"left",mt:2}} color="success" onClick={()=>this.Add_product(d.id,d.category,d.description,d.price,d.image,d.title)}>Add to cart </Button>
                <Link to="/Bynow" state={data_filter} > <Button variant='contained' sx={{float:"left",ml:2, mt:2}} color="info">Bynow</Button>  </Link> 
           </Grid>

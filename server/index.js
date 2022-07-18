@@ -196,7 +196,20 @@ app.post(`/Orders`,(req,res)=>{
 app.post(`/userdata`,(req,res)=>{
     const user_email=req.body.user_email
     console.log("user_email",user_email)
-    db.query(`select * from user_regirster where id = 1`,(err,result)=>{
+    db.query(`select * from user_regirster where id = ${user_email}`,(err,result)=>{
+        if(err){
+            console.log(err)
+        }else{
+            res.send({message:'sucess',results:result})
+        }
+        
+    })
+})
+
+app.post(`/userbynow_add`,(req,res)=>{
+    const user_email=req.body.user_email
+    console.log("user_email",user_email)
+    db.query(`SELECT phoneNumber,address_1,address_2,country  FROM user_bynow inner JOIN user_regirster ON user_regirster.id=user_bynow.user_id WHERE user_regirster.id=1`,(err,result)=>{
         if(err){
             console.log(err)
         }else{

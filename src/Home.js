@@ -17,6 +17,7 @@ import Mens_cloth from './Cloth/Mens_cloth';
 import { withRouter } from './Withrouter';
 import Navbar_new from './Navbar_new';
 import Loading from './Loading';
+import Loadingscreen from './Loadingscreen';
 
  class Home extends Component {
     constructor(){
@@ -214,7 +215,7 @@ import Loading from './Loading';
 
          <Slider/>
 
-        {   this.state.loading ?"" :<Loading/>   }
+        {   this.state.loading ?"" :<Loadingscreen/>   }
 
          {/* {loading && <p>Loading...</p>} */}
          {/* {loading?<p>loading</p>:""} */}

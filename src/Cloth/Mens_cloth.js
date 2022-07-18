@@ -8,6 +8,7 @@ import Button from '@mui/material/Button';
 import Navbar_new from '../Navbar_new';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
+import Loadingscreen from '../Loadingscreen';
 
  class Mens_cloth extends Component {
   constructor(props){
@@ -19,13 +20,19 @@ import { Link } from 'react-router-dom';
       price:[],
       user_id:"",
       image:"",
-      title:""
+      title:"",
+      prices:"",
+      loading:false
     }
   }
 componentDidMount=()=>{
   let datas = JSON.parse(localStorage.getItem("user_email")) || []
   console.log("datas",datas[0])
- 
+  const filterr= this.props.router.location.state.map(d=>d.price)
+  console.log("checkdata",filterr)
+  this.setState({prices:filterr})
+
+
   this.setState({user_id:datas[0]})
 }
   Add_product=(id,category,description,price,image,title)=>{
@@ -41,17 +48,32 @@ componentDidMount=()=>{
     
     localStorage.setItem("id",id)
     this.setState({id:id,category:dd,description:description,price:pricee,image:image,title:title})
-    axios.post(`http://localhost:7001/Product_men`,{
+    // axios.post(`http://localhost:7001/Product_men`,{
       
-      category:this.state.category,
-      description:this.state.description,
-      price:this.state.price,
-      title:this.state.title,
-      user_id:this.state.user_id,
-      image:this.state.image
+    //   category:this.state.category,
+    //   description:this.state.description,
+    //   price:this.state.price,
+    //   title:this.state.title,
+    //   user_id:this.state.user_id,
+    //   image:this.state.image
 
-    })
+    // })
+
     
+    
+  }
+   sortAscending = () => {
+    const { prices } = this.state;
+    const sort = prices.sort((a, b) => a-b)  
+    console.log("sort ",sort)
+    // this.setState({ price })
+
+  }
+
+  sortDescending = () => {
+    const { price } = this.state;
+    price.sort((a, b) => a - b).reverse()
+    // this.setState({ price })
   }
 
   render() {
@@ -64,8 +86,12 @@ componentDidMount=()=>{
     }));
     console.log(this.props.router.location.state)
     const data = this.props.router.location.state
+
+    const filterr= this.props.router.location.state
+    const sorted = [...this.props.router.location.state].sort((a) => a[a.price] );
+    console.log("filter",sorted)
     console.log("data",data)
-    console.log("id",this.state.user_id)
+    console.log("id",this.state.prices)
     // console.log("state",this.state)
 
     return (
@@ -90,6 +116,11 @@ componentDidMount=()=>{
               <Button variant='contained' color='secondary' onClick={()=>this.Add_product(d.id,d.category,d.description,d.price,d.image,d.title)}> View Details  
               
               </Button>  </Link></Item>
+
+              <Item>
+
+                <Button onClick={this.sortDescending}>Cllick</Button>
+              </Item>
             {/* <Item> <Button variant="contained" color='success' onClick={()=>this.Add_product(d.id,d.category,d.description,d.price,d.image,d.title)}>Add</Button>
             <Button variant="contained" color="error">Remove</Button>
             </Item> */}
@@ -98,6 +129,7 @@ componentDidMount=()=>{
         ))}
       </Grid>
     </Box>
+    {/* {   this.state.loading ?"" :<Loadingscreen/>   } */}
           </div>
       </div>
     )

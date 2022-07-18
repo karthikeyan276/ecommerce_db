@@ -29,6 +29,8 @@ import Profile from './Profile/Profile';
 import LinaerStepper from './Checkout/LinearStepper';
 import Welcome from './Checkout/Welcome';
 import Account from './Account';
+import Loadingscreen from './Loadingscreen';
+import Electronics_details from './Cloth/Electronics_details';
 
 
 
@@ -45,13 +47,13 @@ function App() {
            {/* <Nav/> */}
            {/* <Newhome/> */}
            
-
+      {/* <Loadingscreen/> */}
                 <Routes>
                 <Route path = "/" element={<Register/>}/>
                 <Route path='/Login' element={<Login/>}/>
                 <Route path='/Home' element={<Home/>}/>
                 <Route path='/Products'element={<Poducts/>}/>
-                <Route path="/Mens_cloth" element={<Mens_cloth/>}/>
+                <Route path="/Home/Mens_cloth" element={<Mens_cloth/>}/>
                 <Route path='/womes_cloth' element={<Womens_cloth/>}/>
                 <Route path='/electroics' element={<Electronics/>}/>
                 <Route path='/jewelery' element={<Jwel/>}/>
@@ -61,6 +63,7 @@ function App() {
                 <Route path="/Checkout" element={<LinaerStepper/>}/>
                 <Route path='/Womens_details' element={<Women_details/>}/>
                 <Route path='/Profile' element={<Profile/>}/>
+                <Route path='/Details' element={<Electronics_details/>}/>
                 <Route path='/Placeorder' element={<Welcome/>}/>
                 <Route path="/Account" element={<Account/>}/>
                 </Routes>

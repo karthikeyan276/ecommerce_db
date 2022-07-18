@@ -84,7 +84,7 @@ class Womens_cloth extends Component {
             <Item >  {<img style={{height:"150px"}} src={d.image}/>}</Item>
             {/* <Item><Button variant="contained" color='success' onClick={()=>this.Add_product(d.id,d.category,d.description,d.price,d.image,d.title)}>Add</Button></Item> */}
            
-           <Link to="/Womens_details" state={this.props.router.location.state} >
+           <Link to="/Womens_details" style={{ color: 'inherit', textDecoration: 'inherit'}} state={this.props.router.location.state} >
                 <Item ><Button variant='contained' color="secondary" onClick={()=>this.Add_product(d.id,d.category,d.description,d.price,d.image,d.title)}>  View Details </Button></Item>
            </Link>
       

@@ -27,7 +27,7 @@ class Orders extends Component {
       user_id:this.props.router.location.state
     }).then((response)=>{
       console.log(response.status);
-      console.log(response.data.results)
+      console.log("datasssss",response.data.results)
 this.setState({orginal:response.data.results})
       var uniqueArray = response.data.results.reduce((filter, current) => {
         var dk = filter.find(item => item.description === current.description);

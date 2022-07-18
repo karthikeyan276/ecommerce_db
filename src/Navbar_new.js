@@ -5,6 +5,7 @@ import { Nav, NavItem, Dropdown, DropdownItem, DropdownToggle, DropdownMenu, Nav
 import ShoppingCartTwoToneIcon from '@mui/icons-material/ShoppingCartTwoTone';
 import axios from 'axios';
 import { withRouter } from './Withrouter';
+import { toast, ToastContainer } from "react-toastify";
 
 
 class Navbar_new extends React.Component {
@@ -86,6 +87,7 @@ handleClick = (event) => {
     if(new_1!==null){
       localStorage.removeItem('ecommerce');
      this.setState({navigate:<Navigate to='/Login'></Navigate>})
+     toast.success("Logout Scuessfull",{autoClose:1000});    
       
     }
     else{
@@ -104,9 +106,9 @@ handleClick = (event) => {
     const open_1 = Boolean(this.state.anchorEl_1)
     // console.log(this.state.product_data)
     const datas = this.state.product_data
-    // if(localStorage.getItem("ecommerce")==null){
-    //     return <Navigate to="/Home"/>
-    // }
+    if(localStorage.getItem("ecommerce")==null){
+        return <Navigate to="/Login"/>
+    }
 
     // console.log("data",datas)
     return (
@@ -147,7 +149,7 @@ handleClick = (event) => {
         }}
         sx={{color:"white"}}
       >
-        <Link to='/Profile'style={{ color: 'inherit', textDecoration: 'inherit'}} >
+        <Link to='/Profile'  state={this.state.user_id} style={{ color: 'inherit', textDecoration: 'inherit'}} >
         <MenuItem >Profile</MenuItem>
         </Link>
         <Link to ="/Account" style={{ color: 'inherit', textDecoration: 'inherit'}}>
@@ -169,7 +171,7 @@ handleClick = (event) => {
                 {/* <Link to="/Mens_cloth" state={this.state.product_data} >
         <MenuItem >men's clothing</MenuItem>
         </Link> */}
-                <Link to="/Mens_cloth" style={{ color: 'inherit', textDecoration: 'inherit'}} state={this.state.product_data}>
+                <Link to="/Home/Mens_cloth" style={{ color: 'inherit', textDecoration: 'inherit'}} state={this.state.product_data}>
               <DropdownItem>Mens_cloth</DropdownItem>
               </Link>
                 <Link to="/womes_cloth" style={{ color: 'inherit', textDecoration: 'inherit'}} state={this.state.womens_clothing}>

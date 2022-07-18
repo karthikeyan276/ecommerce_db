@@ -7,16 +7,27 @@ import { experimentalStyled as styled } from '@mui/material/styles';
 import Box from '@mui/material/Box';
 import Paper from '@mui/material/Paper';
 import Grid from '@mui/material/Grid';
+import { DataGrid } from '@mui/x-data-grid';
 import { Button } from '@mui/material'
+import { withRouter } from '../Withrouter'
+import Loadingscreen from '../Loadingscreen'
+import "../App.css"
+import Avatar from '@mui/material/Avatar';
+import { deepPurple } from '@mui/material/colors';
+import {
+  createTheme,
+  ThemeProvider as MuiThemeProvider,
+} from '@mui/material/styles';
 
-export default class Profile extends Component {
-  constructor() {
-    super()
+ class Profile extends Component {
+  constructor(props) {
+    super(props)
     this.state = {
       user_email: "",
       logged_user: [],
       loading: false,
-      image: ""
+      image: "",
+      userbynow_add:[]
     }
   }
 
@@ -26,14 +37,18 @@ export default class Profile extends Component {
     let datas = JSON.parse(localStorage.getItem("user_email")) || []
     console.log("datas", datas[0])
     this.setState({ user_email: datas[0] })
+    console.log("usereeee",this.state.user_email)
 
 
     this.dataget()
+    this.changed()
   }
   dataget = () => {
     this.setState({ loading: false })
+
+  
     axios.post(`http://localhost:7001/userdata/`, {
-      user_email: this.state.user_email
+      user_email: this.props.router.location.state
     }).then((response) => {
       console.log(response.data.results)
       this.setState({ logged_user: response.data.results })
@@ -80,12 +95,39 @@ console.log("response",response)
   }
 
   changed = (e) => {
-    console.log(e.target.files)
+    axios.post(`http://localhost:7001/userbynow_add`,{
+      user_email: this.props.router.location.state
+    }).then((response)=>{
+      console.log("userbynow_add",response.data.results)
+      this.setState({userbynow_add:response.data.results})
+    })
   }
 
 
 
   render() {
+    const customTheme = createTheme({
+      palette: {
+        primary: {
+          main: deepPurple[500],
+        },
+      },
+    });
+    
+    const StyledAvatar = styled(Avatar)`
+      ${({ theme }) => `
+      cursor: pointer;
+      background-color: ${theme.palette.primary.main};
+      transition: ${theme.transitions.create(['background-color', 'transform'], {
+        duration: theme.transitions.duration.standard,
+      })};
+      &:hover {
+        background-color: ${theme.palette.secondary.main};
+        transform: scale(1.3);
+      }
+      `}
+    `;
+
     const Item = styled(Paper)(({ theme }) => ({
       backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
       ...theme.typography.body2,
@@ -93,14 +135,18 @@ console.log("response",response)
       textAlign: 'center',
       color: theme.palette.text.secondary,
     }));
-    console.log("logged_user", this.state.image)
+    console.log("logged_user", this.state.user_email)
+    console.log(this.props.router.location.state)
     const data = this.state.logged_user
+
+    const userbynow_add = this.state.userbynow_add
+    console.log("userbynow_adduserbynow_add",userbynow_add)
     // console.log("true",this.state.loading)
     return (
       <div>
         <div >
 
-          {/* <Navbar_new/>  */}
+          <Navbar_new/> 
         </div>
 
 
@@ -110,32 +156,55 @@ console.log("response",response)
         </div>
         <div>
 
-          <h1 >   {this.state.loading ? "" : <h1> loading </h1>}  </h1>
+          <h1 >   {this.state.loading ? "" : <h1> <Loadingscreen/> </h1>}  </h1>
         </div>
-        <div>
-          <Box sx={{ flexGrow: 1 }}>
-            <Grid container spacing={{ xs: 2, md: 3 }} columns={{ xs: 4, sm: 8, md: 12 }}>
+        <div >
+          <Box >
+            <Grid   container spacing={{ xs: 2, md: 3 }} columns={{ xs: 4, sm: 8, md: 12 }}>
               {data.map((data, index) => (
-                <Grid item xs={6} sm={6} md={12} key={index}>
-                  <Item> <h1>First_name : {data.First_name} {data.Last_name} </h1><br />
+                <Grid   item xs={6} sm={6} md={12} key={index}>
+                  <Item sx={{ flexGrow: 1 ,"&:hover": {
+                  background: "lightblue",
+                },}}> <h1>First_name : {data.First_name} {data.Last_name} </h1><br />
                     <h2>  Your Email: {data.Email} </h2>
                     <img src={data.image} />
-                    <Button variant='contained' onClick={this.updata_withpic}>upload pic</Button>
+                    {/* <Button variant='contained' onClick={this.updata_withpic}>upload pic</Button> */}
 
                   </Item>
                 </Grid>
               ))}
+               {userbynow_add.map((data, index) => (
+                <Grid item xs={6} sm={6} md={12} key={index}  sx={{
+                  boxShadow: 2,
+                  border: 2,
+                  borderColor: 'primary.light',
+                  '& .MuiDataGrid-cell:hover': {
+                    color: 'primary.main',
+                  },
+                }}>
+                  <Item > <h1>phoneNumber : {data.phoneNumber}  </h1><br />
+                    <h2>  Your Address: {data.address_1} {data.address_2}</h2>
+                    <h4>Country: {data.country}</h4>
+                    <img src={data.image} />
+                    {/* <Button variant='contained' onClick={this.updata_withpic}>upload pic</Button> */}
+
+                  </Item>
+                </Grid>
+              ))}
+              
             </Grid>
           </Box>
           {/* <input type="file" onChange={(e)=>this.uploadImage(e.target.value)}/> */}
-          <form onSubmit={this.submitHandler}>
+          {/* <form onSubmit={this.submitHandler}>
             <input type="file"name='myfiles' onChange={this.myHandler} />
                 <input type="submit" value="upload"/>
 
-          </form>
+          </form> */}
 
         </div>
       </div>
     )
   }
 }
+
+export default withRouter(Profile)

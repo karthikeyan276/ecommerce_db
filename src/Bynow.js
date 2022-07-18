@@ -35,7 +35,7 @@ import { Link } from 'react-router-dom';
           <Grid item xs={2} sm={4} md={12} key={index}>
             <h1 style={{margin:"0 auto"}}>{val.title}</h1>
             <Item sx={{border:"none"}}><img style={{width:"350px",float:"left"}} src = {val.image}/></Item>
-            <Box sx={{position:"relative",mt:10}}><h3> {val.description} </h3> 
+            <Box sx={{position:"relative",mt:10,height:"100px"}}><h3> {val.description} </h3> 
             
             <h3 style={{color:"green"}}> Price:<CurrencyRupeeRoundedIcon/>   {val.price} </h3>
             <Link to="/Checkout" state={datas}>

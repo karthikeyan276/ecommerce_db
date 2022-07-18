@@ -7,6 +7,7 @@ import Grid from '@mui/material/Grid';
 import { Button } from 'reactstrap';
 import Navbar_new from '../Navbar_new';
 import axios from "axios"
+import { Link } from 'react-router-dom';
 
 
  class Electronics extends Component {
@@ -29,6 +30,7 @@ import axios from "axios"
     console.log("ddd",dd)
     const pricee = Math.round(price)
     console.log("prieeee",pricee)
+    localStorage.setItem("ele",id)
     this.setState({id:id,category:dd,description:description,price:pricee,image:image,title:title})
     // axios.post(`http://localhost:7001/product`,{
       
@@ -77,7 +79,7 @@ import axios from "axios"
             <Item >   Desc:{d.description.slice(0,20)}</Item>
             <Item > <h4> Price:{d.price} </h4></Item>
             <Item >  {<img style={{height:"150px"}} src={d.image}/>}</Item>
-            <Item><Button variant="contained" color='success' onClick={()=>this.Addtocart(d.id,d.category,d.description,d.price,d.image,d.title)}>Add</Button></Item>
+            <Item><Link to="/Details" state={this.props.router.location.state}> <Button variant="contained" color='success' onClick={()=>this.submit(d.id,d.category,d.description,d.price,d.image,d.title)}>Add</Button> </Link></Item>
         
           </Grid>
         ))}

@@ -83,7 +83,7 @@ id_getting =()=>{
   render() {
     
     console.log("this", this.props)
-    if(localStorage.getItem("user")=="Email"){
+    if(localStorage.getItem("ecommerce")=="Email"){
         return <Navigate to="/Home"/>
     }
     const getting_id = this.state.send_id
