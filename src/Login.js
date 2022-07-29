@@ -80,12 +80,23 @@ id_getting =()=>{
     // componentDidMount=()=>{
     //   this.sigin()
     // }
+
+    componentDidMount(){
+      if(localStorage.getItem("ecommerce")!==null){
+        this.setState({
+          navigate:<Navigate to='/Home'></Navigate>  
+        
+         
+      })
+      }
+      
+    }
   render() {
     
     console.log("this", this.props)
-    if(localStorage.getItem("ecommerce")=="Email"){
-        return <Navigate to="/Home"/>
-    }
+    // if(localStorage.getItem("ecommerce")=="Email"){
+    //     return <Navigate to="/Home"/>
+    // }
     const getting_id = this.state.send_id
     console.log("send id", getting_id)
     const theme = createTheme();

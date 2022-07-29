@@ -35,7 +35,7 @@ import {
 import { withRouter } from "../Withrouter";
 import axios from "axios";
 import { Navigate } from "react-router-dom";
-import { toast, ToastContainer } from "react-toastify";
+import { toast } from "react-toastify";
 import Navbar_new from "../Navbar_new";
 
 const useStyles = makeStyles((theme) => ({
@@ -70,21 +70,24 @@ const BasicForm = () => {
    
         control={control}
         name="firstName"
+       
         render={({ field }) => (
+         
           <TextField
             id="first-name"
             label="First Name"
             variant="outlined"
             placeholder="Enter Your First Name"
             inputProps={{className: classes.textfield_input}}
-        
+            
             margin="normal"
             
             {...field}
           />
+         
         )}
         
-      /><br/>
+      /> <span className="text-danger"></span><br/>
 
       <Controller
         control={control}
@@ -357,6 +360,7 @@ const LinaerStepper = (props) => {
   const [skippedSteps, setSkippedSteps] = useState([]);
   const [user_data,setUser_data]=useState([])
   const [navigate,setNavigate]=useState("")
+  const[name,setName]=useState("")
   const steps = getSteps();
 
   const isStepOptional = (step) => {
@@ -368,6 +372,28 @@ const LinaerStepper = (props) => {
   };
 
   const handleNext = (data) => {
+    const target = data.target;
+    var value = target.value;
+    const name = target.name;
+    setName([name]=value)
+    let firstNameError = "";
+    let lastNameError = "";
+    let emailAddressError = "";
+    let phoneNumberError = "";
+    let address1Error = "";
+    let address2Error = "";
+    let countryError = "";
+    let cardNumberError=""
+    let cardMonthError = "";
+    let cardYearError = "";
+   if(!name){
+    firstNameError="name plz enter"
+   }if (firstNameError ) {
+
+    return false;
+  }
+  
+
     console.log(data);
     let a=[]
 
@@ -390,6 +416,7 @@ const LinaerStepper = (props) => {
         skippedSteps.filter((skipItem) => skipItem !== activeStep)
       );
     }
+    return true;
   };
 
   const handleBack = () => {

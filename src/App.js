@@ -31,6 +31,7 @@ import Welcome from './Checkout/Welcome';
 import Account from './Account';
 import Loadingscreen from './Loadingscreen';
 import Electronics_details from './Cloth/Electronics_details';
+import Newwww from './Newwww';
 
 
 
@@ -67,6 +68,8 @@ function App() {
                 <Route path='/Placeorder' element={<Welcome/>}/>
                 <Route path="/Account" element={<Account/>}/>
                 </Routes>
+
+                {/* <Newwww/> */}
    
     </div>
   );

@@ -187,7 +187,7 @@ handleClick = (event) => {
           </Dropdown>
           <NavItem>
             <Link to="/Home">
-             <Button sx={{mr:2,ml:2}} variant="contained" >Back</Button>
+             <Button sx={{mr:2,ml:2}} variant="contained" >Home</Button>
             </Link>
            
           </NavItem>
