@@ -31,7 +31,10 @@ import Welcome from './Checkout/Welcome';
 import Account from './Account';
 import Loadingscreen from './Loadingscreen';
 import Electronics_details from './Cloth/Electronics_details';
+import { StyledEngineProvider } from "@mui/material/styles";
 import Newwww from './Newwww';
+import Slidercheck from './Checking/Slidercheck';
+
 
 
 
@@ -49,6 +52,10 @@ function App() {
            {/* <Newhome/> */}
            
       {/* <Loadingscreen/> */}
+
+      <StyledEngineProvider injectFirst>
+        <Slidercheck />
+      </StyledEngineProvider>
                 <Routes>
                 <Route path = "/" element={<Register/>}/>
                 <Route path='/Login' element={<Login/>}/>
